@@ -6,7 +6,7 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.green[600], // body color
+        backgroundColor: Colors.green[800], // body color
         appBar: AppBar(
           title: Text('Dicee'),
           backgroundColor: Colors.green[900], // appbar color
@@ -24,9 +24,17 @@ class DicePage extends StatefulWidget {
 
 class DicePageState extends State<DicePage> {
   // setting the initial value of the left dice
-  int leftDiceNumber = 1; 
+  int leftDiceNumber = 1;
   // setting the initial value of the right dice
-  int rightDiceNumber = 6; 
+  int rightDiceNumber = 6;
+
+  void RandomDiceRolling() {
+    setState(() {
+      // setting the new value after touching the dice
+      leftDiceNumber = new Random().nextInt(5) + 1;
+      rightDiceNumber = new Random().nextInt(5) + 1; // +1 to avoid 0 and to put 6
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,15 +47,13 @@ class DicePageState extends State<DicePage> {
             Container(
               child: Expanded(
                 child: FlatButton(
-                  padding: EdgeInsets.all(16.0), // ignored the default padding for beauty
+                  padding: EdgeInsets.all(
+                      16.0), // ignored the default padding for beauty
                   child: new Image.asset(
                     "images/dice$leftDiceNumber.png",
                   ),
                   onPressed: () {
-                    setState(() {
-                      // setting the new value after touching the dice
-                      leftDiceNumber = new Random().nextInt(5) + 1; // +1 to avoid 0 and to put 6
-                    });
+                    RandomDiceRolling();
                   },
                 ),
               ),
@@ -55,14 +61,14 @@ class DicePageState extends State<DicePage> {
             Container(
               child: Expanded(
                 child: FlatButton(
-                    padding: EdgeInsets.all(16.0), // ignored the default padding for beauty
+                    padding: EdgeInsets.all(
+                        16.0), // ignored the default padding for beauty
                     child: new Image.asset(
                       "images/dice$rightDiceNumber.png",
                     ),
                     onPressed: () {
                       setState(() {
-                        // setting the new value after touching the dice
-                        rightDiceNumber = new Random().nextInt(5) + 1; 
+                        RandomDiceRolling();
                       });
                     }),
               ),
