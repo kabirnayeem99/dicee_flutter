@@ -28,7 +28,8 @@ class DicePageState extends State<DicePage> {
   // setting the initial value of the right dice
   int rightDiceNumber = 6;
 
-  void RandomDiceRolling() {
+  void randomDiceRolling() {
+    // a DRY random value generatting function
     setState(() {
       // setting the new value after touching the dice
       leftDiceNumber = new Random().nextInt(5) + 1;
@@ -53,7 +54,7 @@ class DicePageState extends State<DicePage> {
                     "images/dice$leftDiceNumber.png",
                   ),
                   onPressed: () {
-                    RandomDiceRolling();
+                    randomDiceRolling();
                   },
                 ),
               ),
@@ -68,7 +69,7 @@ class DicePageState extends State<DicePage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        RandomDiceRolling();
+                        randomDiceRolling();
                       });
                     }),
               ),
